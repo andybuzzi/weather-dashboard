@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <div>
+        <p>Weather Dashboard</p>
+      </div>
+    </header>
+    <main>
+      <section id="search-city">
+        <form class="search-city">
+          <label for="csearch">Search for a City:</label>
+          <br />
+          <input type="text" id="csearch" name="csearch" />
+          <input type="submit" value="Submit" class="search-btn" />
+        </form>
+        <div class="search-history">Nothing to show</div>
+      </section>
+      <section id="dashboard">
+        <div class="dashboard-display">Nothing to show</div>
+        <div class="weather-forecast">Nothing to show</div>
+      </section>
+    </main>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
