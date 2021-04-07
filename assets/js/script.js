@@ -52,6 +52,7 @@ var getUv = function (uv) {
     response
       .json()
       .then(function (data) {
+        displayUV(data, city);
         console.log(data);
       })
       .catch(function (error) {
@@ -81,8 +82,12 @@ var displayWeather = function (weather, searchTerm) {
   humidEl.textContent = `Humidity: ${humid}%`;
 };
 
-// var displayUV = function(uv) {
-
-// };
+var displayUV = function (weatherUv) {
+  //display weather uv
+  var weatherUv = weatherUv.current.uvi;
+  var weatherUvEl = document.querySelector("#uv-index");
+  weatherUvEl.textContent = `UV Index: ${weatherUv}`;
+  console.log(weatherUv);
+};
 
 userFormEl.addEventListener("submit", formSubmitHandler);
