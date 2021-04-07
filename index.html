@@ -4,6 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- bootstrap link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Weather Dashboard</title>
   </head>
@@ -15,19 +23,30 @@
     </header>
     <main>
       <section id="search-city">
-        <form class="search-city">
+        <form class="search-city" id="user-form">
           <label for="csearch">Search for a City:</label>
           <br />
-          <input type="text" id="csearch" name="csearch" />
-          <input type="submit" value="Submit" class="search-btn" />
+          <input type="text" id="city" name="csearch" />
+          <button type="submit" id="submit" class="search-btn">Submit</button>
         </form>
         <div class="search-history">Nothing to show</div>
       </section>
       <section id="dashboard">
-        <div class="dashboard-display">Nothing to show</div>
+        <div class="dashboard-display">
+          <h1 id="city-date">City Name & Date</h1>
+          <p id="temp">Temperature: 0 °F</p>
+          <p id="humid">Humidity: 41 %</p>
+          <p id="uv-index">UV Index: 9.49</p>
+        </div>
         <div class="weather-forecast">Nothing to show</div>
       </section>
     </main>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

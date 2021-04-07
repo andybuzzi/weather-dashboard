@@ -58,6 +58,17 @@ main {
   height: 50%;
 }
 
+.dashboard-display h1 {
+  padding: 15px;
+  font-size: 35px;
+}
+
+.dashboard-display p {
+  padding: 15px;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
 .weather-forecast {
   border: black 2px solid;
   height: 50%;
