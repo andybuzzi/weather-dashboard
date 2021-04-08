@@ -73,3 +73,17 @@ main {
   border: black 2px solid;
   height: 50%;
 }
+
+/* daily forecast */
+#forecast-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.daily-forecast {
+  display: none;
+  border: black 2px solid;
+  width: 200px;
+  margin: 5px;
+  padding: 5px;
+}
