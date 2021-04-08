@@ -120,6 +120,10 @@ var displayForecast = function (forecast) {
     // create p for DATE
     dateEl = document.createElement("p");
     dateEl.textContent = `${ndate}`;
+    dateEl.setAttribute("class", "date-text");
+    dateEl.setAttribute("style", "font-weight: bold");
+    dateEl.setAttribute("style", "font-size: 18px");
+
     // append date to cardContainerEl
     cardContainerEl.appendChild(dateEl);
 

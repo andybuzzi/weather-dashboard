@@ -74,6 +74,12 @@ main {
   height: 50%;
 }
 
+.weather-forecast h2 {
+  font-size: 22px;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
 /* daily forecast */
 #forecast-container {
   display: flex;
@@ -81,8 +87,9 @@ main {
 }
 
 .daily-forecast {
+  background-color: #38445c;
+  color: #fff;
   display: none;
-  border: black 2px solid;
   width: 200px;
   margin: 5px;
   padding: 5px;
