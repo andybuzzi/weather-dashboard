@@ -1,5 +1,7 @@
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
+var currentDate = moment().format("MM/DD/YYYY");
+console.log(currentDate);
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
@@ -66,11 +68,20 @@ var displayWeather = function (weather, searchTerm) {
   console.log(weather);
   console.log(searchTerm);
 
-  //display city name
+  //display city name, date
   var cityName = weather.name;
   var cityNameEl = document.querySelector("#city-date");
-  cityNameEl.textContent = cityName;
+  cityNameEl.textContent = `${cityName} (${currentDate})`;
   console.log(cityName);
+
+  // //display icon
+  // var mainIcon = weather.weather[0].icon;
+  // var mainIconEl = document.querySelector("#main-icon");
+  // mainIconEl.createElement("img");
+  // mainIconEl.setAttribute(
+  //   "src",
+  //   `http://openweathermap.org/img/wn/${mainIcon}.png`
+  // );
 
   //display temperature
   var temp = weather.main.temp;
@@ -84,6 +95,11 @@ var displayWeather = function (weather, searchTerm) {
 };
 
 var displayUV = function (weatherUv) {
+  //display wind
+  var wind = weatherUv.current.wind_speed;
+  var windEl = document.querySelector("#wind");
+  windEl.textContent = `Wind: ${wind}`;
+
   //display weather uv
   var weatherUv = weatherUv.current.uvi;
   var weatherUvEl = document.querySelector("#uv-index");

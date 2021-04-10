@@ -6,9 +6,14 @@
 }
 
 header {
-  background: #333;
+  background: linear-gradient(
+    90deg,
+    rgba(96, 164, 236, 1) 0%,
+    rgba(9, 9, 121, 1) 87%,
+    rgba(2, 0, 36, 1) 100%
+  );
   color: #fff;
-  height: 55px;
+  height: 70px;
   margin-bottom: 5px;
 }
 
@@ -24,9 +29,19 @@ main {
 }
 
 #search-city {
-  border: black 2px solid;
-  flex-basis: 25%;
+  /* border: black 2px solid; */
+  /* flex-basis: 25%; */
   height: 100%;
+  margin: 0 15px;
+}
+
+#city {
+  width: 300px;
+  padding: 10px;
+  border-radius: 5px;
+  border: black solid 1px;
+  outline: none;
+  font-size: 18px;
 }
 
 /* .search-city {
@@ -46,6 +61,15 @@ main {
 
 .search-btn {
   padding: 5px;
+  display: block;
+  width: 300px;
+  margin: 15px 0;
+  background-color: #60a4ec;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 5px;
+  border: none;
+  opacity: 0.9;
 }
 
 #dashboard {
@@ -55,16 +79,19 @@ main {
 
 .dashboard-display {
   border: black 2px solid;
-  height: 50%;
+  /* height: 50%; */
 }
 
+.main-heading {
+  display: inline-flex;
+}
 .dashboard-display h1 {
   padding: 15px;
   font-size: 35px;
 }
 
 .dashboard-display p {
-  padding: 15px;
+  padding: 5px 15px;
   margin: 15px 0;
   font-size: 18px;
 }
@@ -76,7 +103,7 @@ main {
 
 .weather-forecast h2 {
   font-size: 22px;
-  margin: 10px 0;
+  margin: 10px 15px;
   font-weight: bold;
 }
 
@@ -93,4 +120,8 @@ main {
   width: 200px;
   margin: 5px;
   padding: 5px;
+}
+
+.daily-forecast p {
+  margin: 10px;
 }

@@ -26,17 +26,21 @@
         <form class="search-city" id="user-form">
           <label for="csearch">Search for a City:</label>
           <br />
-          <input type="text" id="city" name="csearch" />
-          <button type="submit" id="submit" class="search-btn">Submit</button>
+          <input type="text" id="city" name="csearch" placeholder="San Diego" />
+          <button type="submit" id="submit" class="search-btn">Search</button>
         </form>
         <div class="search-history">Nothing to show</div>
       </section>
       <section id="dashboard">
         <div class="dashboard-display">
-          <h1 id="city-date">City Name & Date</h1>
-          <p id="temp">Temperature:</p>
+          <div class="main-heading">
+            <h1 id="city-date">assdassa</h1>
+            <div id="main-icon"></div>
+          </div>
+          <p id="temp">Temp:</p>
+          <p id="wind">Wind:</p>
           <p id="humid">Humidity:</p>
-          <p id="uv-index">UV Index:</p>
+          <p id="uv-index">UV Index: <span id="uv-box"></span></p>
         </div>
         <div class="weather-forecast">
           <h2>5-Day Forecast</h2>
