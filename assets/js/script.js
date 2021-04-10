@@ -31,6 +31,7 @@ var getWeather = function (city) {
     response
       .json()
       .then(function (data) {
+        console.log(data);
         displayWeather(data, city);
         getUv(data, city);
       })
@@ -68,43 +69,102 @@ var displayWeather = function (weather, searchTerm) {
   console.log(weather);
   console.log(searchTerm);
 
-  //display city name, date
+  // variables for display weather
   var cityName = weather.name;
-  var cityNameEl = document.querySelector("#city-date");
-  cityNameEl.textContent = `${cityName} (${currentDate})`;
-  console.log(cityName);
-
-  // //display icon
-  // var mainIcon = weather.weather[0].icon;
-  // var mainIconEl = document.querySelector("#main-icon");
-  // mainIconEl.createElement("img");
-  // mainIconEl.setAttribute(
-  //   "src",
-  //   `http://openweathermap.org/img/wn/${mainIcon}.png`
-  // );
-
-  //display temperature
   var temp = weather.main.temp;
-  var tempEl = document.querySelector("#temp");
-  tempEl.textContent = `Temperature: ${temp}°F`;
+  var wind = weather.wind.speed;
+  var humidity = weather.main.humidity;
+  var weatherIcon = weather.weather[0].icon;
 
-  //display humidity
-  var humid = weather.main.humidity;
-  var humidEl = document.querySelector("#humid");
-  humidEl.textContent = `Humidity: ${humid}%`;
+  // display weather container
+  var displayWeather = document.querySelector("#dashboard");
+
+  // create div to display heading and icon
+  var displayDivContainerEl = document.createElement("div");
+  displayDivContainerEl.setAttribute("class", "main-heading");
+
+  // append displayDivContainerEl to displayWeather div
+  displayWeather.appendChild(displayDivContainerEl);
+
+  //create h1 for HEADING
+  var cityNameEl = document.createElement("h1");
+  cityNameEl.setAttribute("id", "city-date");
+  cityNameEl.textContent = `${cityName} (${currentDate})`;
+
+  // append cityNameEl to displayWeather div
+  displayDivContainerEl.appendChild(cityNameEl);
+
+  //create p for ICON
+  iconEl = document.createElement("img");
+  iconEl.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${weatherIcon}.png`
+  );
+  //append icon to cardContainerEl
+  displayDivContainerEl.appendChild(iconEl);
+
+  //create p for TEMPERATURE
+  tempEl = document.createElement("p");
+  tempEl.textContent = `Temp: ${temp}°F`;
+  //append temperature to displayWeather
+  displayWeather.appendChild(tempEl);
+
+  //create p for WIND
+  windEl = document.createElement("p");
+  windEl.textContent = `Wind: ${wind} MPH`;
+  //append wind to displayWeather
+  displayWeather.appendChild(windEl);
+
+  //create p for HUMIDITY
+  humidityEl = document.createElement("p");
+  humidityEl.textContent = `Humidity: ${humidity}%`;
+  //append humidity to displayWeather
+  displayWeather.appendChild(humidityEl);
 };
 
 var displayUV = function (weatherUv) {
-  //display wind
-  var wind = weatherUv.current.wind_speed;
-  var windEl = document.querySelector("#wind");
-  windEl.textContent = `Wind: ${wind}`;
-
-  //display weather uv
+  // variable for weather uv
   var weatherUv = weatherUv.current.uvi;
-  var weatherUvEl = document.querySelector("#uv-index");
-  weatherUvEl.textContent = `UV Index: ${weatherUv}`;
+  var displayWeather = document.querySelector("#dashboard");
+
+  var weatherUvEl = document.createElement("p");
+  weatherUvEl.textContent = `UV Index: `;
+
+  // append weather UV to displayWeather
+  displayWeather.appendChild(weatherUvEl);
   console.log(weatherUv);
+
+  //create span for styling
+  var spanEl = document.createElement("span");
+  spanEl.textContent = ` ${weatherUv}`;
+
+  var uvNumber = parseFloat(spanEl.innerText);
+  console.log(uvNumber);
+
+  // if else statement to validade color uv
+  if (uvNumber >= 0 && uvNumber <= 2.99) {
+    spanEl.setAttribute(
+      "style",
+      "font-size: 12px; font-weight: bold; color:#fff; padding: 4px 14px; border-radius: 5px; background-color: green;"
+    );
+  } else if (uvNumber >= 3 && uvNumber <= 5.99) {
+    spanEl.setAttribute(
+      "style",
+      "font-size: 12px; font-weight: bold; color:#fff; padding: 4px 14px; border-radius: 5px; background-color: #ffea61;"
+    );
+  } else if (uvNumber >= 6 && uvNumber <= 7.99) {
+    spanEl.setAttribute(
+      "style",
+      "font-size: 12px; font-weight: bold; color:#fff; padding: 4px 14px; border-radius: 5px; background-color: #ffa500;"
+    );
+  } else if (uvNumber >= 8 && uvNumber <= 10.99) {
+    spanEl.setAttribute(
+      "style",
+      "font-size: 12px; font-weight: bold; color:#fff; padding: 4px 14px; border-radius: 5px; background-color: #9e1a1a;"
+    );
+  }
+  // append span to displayWeather
+  weatherUvEl.appendChild(spanEl);
 };
 
 var displayForecast = function (forecast) {
@@ -122,7 +182,7 @@ var displayForecast = function (forecast) {
     if (ndate[i] === 0) {
       continue;
     }
-    console.log(ndate);
+    // console.log(ndate);
     //forecast container
     var cards = document.querySelector("#forecast-container");
 
