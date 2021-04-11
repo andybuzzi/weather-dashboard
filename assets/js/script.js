@@ -3,6 +3,9 @@ var cityInputEl = document.querySelector("#city");
 var currentDate = moment().format("MM/DD/YYYY");
 console.log(currentDate);
 
+var cities = [];
+console.log(cities);
+
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -12,10 +15,18 @@ var formSubmitHandler = function (event) {
   if (citySearch) {
     getWeather(citySearch);
     cityInputEl.value = "";
+    // push city to cities array
+    cities.push(citySearch);
+
+    //display object
+    console.warn("added", { cities });
+
+    // saving to local storage
+    localStorage.setItem("city-search", JSON.stringify(cities));
   } else {
     alert("Please enter valid city");
   }
-  console.log(event);
+  // console.log(event);
 };
 
 // get weather api
@@ -31,7 +42,6 @@ var getWeather = function (city) {
     response
       .json()
       .then(function (data) {
-        console.log(data);
         displayWeather(data, city);
         getUv(data, city);
       })
@@ -132,14 +142,12 @@ var displayUV = function (weatherUv) {
 
   // append weather UV to displayWeather
   displayWeather.appendChild(weatherUvEl);
-  console.log(weatherUv);
 
   //create span for styling
   var spanEl = document.createElement("span");
   spanEl.textContent = ` ${weatherUv}`;
 
   var uvNumber = parseFloat(spanEl.innerText);
-  console.log(uvNumber);
 
   // if else statement to validade color uv
   if (uvNumber >= 0 && uvNumber <= 2.99) {

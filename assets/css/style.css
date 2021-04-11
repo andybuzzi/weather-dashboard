@@ -65,7 +65,8 @@ main {
   padding: 5px;
 }
 
-.search-btn {
+.search-btn,
+.history-btn {
   padding: 5px;
   display: block;
   width: 300px;
@@ -76,6 +77,13 @@ main {
   border-radius: 5px;
   border: none;
   opacity: 0.9;
+}
+
+.history-btn {
+  background-color: #b5b5b5;
+  color: #333;
+  font-weight: bold;
+  opacity: 1;
 }
 
 #dashboard {
