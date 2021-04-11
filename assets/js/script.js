@@ -14,20 +14,35 @@ var formSubmitHandler = function (event) {
 
   if (citySearch) {
     getWeather(citySearch);
+    setLocalStorage(citySearch);
     cityInputEl.value = "";
-    // push city to cities array
-    cities.push(citySearch);
-
-    //display object
-    console.warn("added", { cities });
-
-    // saving to local storage
-    localStorage.setItem("city-search", JSON.stringify(cities));
   } else {
     alert("Please enter valid city");
   }
   // console.log(event);
 };
+
+var setLocalStorage = function (citySearch) {
+  // push city to cities array
+
+  cities.push(citySearch);
+  //display object
+  console.warn("added", { cities });
+  // saving to local storage
+  localStorage.setItem("city-search", JSON.stringify(cities));
+
+  var retrievedData = localStorage.getItem("city-search");
+
+  console.log(retrievedData);
+};
+// function searchHistory() {}
+
+// var historySearch = function () {
+//   var getHistory = localStorage.getItem("movies");
+//   if (getHistory) {
+//     console.log(JSON.parse(getHistory));
+//   }
+// };
 
 // get weather api
 var getWeather = function (city) {
