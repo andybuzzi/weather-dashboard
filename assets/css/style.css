@@ -80,8 +80,9 @@ main {
 
 #dashboard {
   border: black 2px solid;
-  flex-basis: 75%;
+  height: 30%;
   padding: 15px;
+  width: 88%;
 }
 
 .main-heading {
@@ -99,8 +100,8 @@ main {
 }
 
 .weather-forecast {
-  border: black 2px solid;
   height: 50%;
+  width: 88%;
 }
 
 .weather-forecast h2 {
