@@ -36,6 +36,7 @@ function renderCities() {
     // Create button element and make the todo text the text content
     var button = document.createElement("button");
     button.style.textTransform = "capitalize";
+    button.setAttribute("class", "search-btn history");
     button.textContent = cityArr[i];
 
     //Append the button the li before you append the li to the todoList

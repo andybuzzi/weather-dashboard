@@ -78,6 +78,16 @@ main {
   opacity: 0.9;
 }
 
+.line-break {
+  border-bottom: 2px gray solid;
+}
+
+.history {
+  background-color: rgba(136, 133, 133, 0.897);
+  color: black;
+  font-weight: normal;
+}
+
 #dashboard {
   border: black 2px solid;
   height: 30%;
