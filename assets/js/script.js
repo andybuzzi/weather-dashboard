@@ -1,21 +1,68 @@
 var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
 var currentDate = moment().format("MM/DD/YYYY");
+var btn = document.querySelector("#submit");
 console.log(currentDate);
+
+cityArr = [];
+
+// local storage
+function init() {
+  // Get stored todos from localStorage
+  // Parsing the JSON string to an object
+  var storedCities = JSON.parse(localStorage.getItem("cities"));
+  console.log(storedCities);
+
+  // If storedCities are not empty, update the todos array to it
+  if (storedCities !== null) {
+    cityArr = storedCities;
+  }
+
+  renderCities();
+}
+
+function storeCities() {
+  // Stringify and set "cities" key in localStorage to todos array
+
+  localStorage.setItem("cities", JSON.stringify(cityArr));
+}
+
+function renderCities() {
+  searchHistory = document.querySelector(".search-history");
+
+  searchHistory.textContent = "";
+  // Render a new button for each city and append it to the div
+  for (var i = 0; i < cityArr.length; i++) {
+    // Create button element and make the todo text the text content
+    var button = document.createElement("button");
+    button.style.textTransform = "capitalize";
+    button.textContent = cityArr[i];
+
+    //Append the button the li before you append the li to the todoList
+    searchHistory.appendChild(button);
+  }
+}
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
   //get value from input element
   var citySearch = cityInputEl.value.trim();
+  console.log(citySearch);
+  getWeather(citySearch);
 
-  if (citySearch) {
-    getWeather(citySearch);
-    cityInputEl.value = "";
-  } else {
+  if (citySearch === "") {
     alert("Please enter valid city");
+    return;
   }
-  console.log(event);
+
+  // add city search to cityArr and clean input
+
+  cityArr.push(citySearch);
+  console.log(cityArr);
+
+  storeCities();
+  renderCities();
 };
 
 // get weather api
@@ -31,7 +78,7 @@ var getWeather = function (city) {
     response
       .json()
       .then(function (data) {
-        console.log(data);
+        // console.log(data);
         displayWeather(data, city);
         getUv(data, city);
       })
@@ -57,7 +104,7 @@ var getUv = function (uv) {
       .then(function (data) {
         displayUV(data, city);
         displayForecast(data, city);
-        console.log(data);
+        // console.log(data);
       })
       .catch(function (error) {
         alert("Unable to connect to openweather");
@@ -66,8 +113,8 @@ var getUv = function (uv) {
 };
 
 var displayWeather = function (weather, searchTerm) {
-  console.log(weather);
-  console.log(searchTerm);
+  // console.log(weather);
+  // console.log(searchTerm);
 
   // variables for display weather
   var cityName = weather.name;
@@ -233,3 +280,4 @@ var displayForecast = function (forecast) {
 };
 
 userFormEl.addEventListener("submit", formSubmitHandler);
+init();
