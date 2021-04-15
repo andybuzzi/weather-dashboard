@@ -2,7 +2,9 @@ var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
 var currentDate = moment().format("MM/DD/YYYY");
 var btn = document.querySelector("#submit");
-console.log(currentDate);
+// console.log(currentDate);
+var cards = document.querySelector("#forecast-container");
+var displayWeatherEl = document.querySelector("#dashboard");
 
 cityArr = [];
 
@@ -39,6 +41,7 @@ function renderCities() {
     button.setAttribute("class", "search-btn history");
     button.textContent = cityArr[i];
 
+    var citySearch = button.value.trim();
     //Append the button the li before you append the li to the todoList
     searchHistory.appendChild(button);
   }
@@ -51,7 +54,6 @@ var formSubmitHandler = function (event) {
   var citySearch = cityInputEl.value.trim();
   console.log(citySearch);
   getWeather(citySearch);
-
   if (citySearch === "") {
     alert("Please enter valid city");
     return;
@@ -59,7 +61,10 @@ var formSubmitHandler = function (event) {
 
   // add city search to cityArr and clean input
 
-  cityArr.push(citySearch);
+  if (cityArr.indexOf(citySearch) === -1) {
+    cityArr.push(citySearch);
+  }
+
   console.log(cityArr);
 
   storeCities();
@@ -80,6 +85,7 @@ var getWeather = function (city) {
       .json()
       .then(function (data) {
         // console.log(data);
+
         displayWeather(data, city);
         getUv(data, city);
       })
@@ -117,6 +123,8 @@ var displayWeather = function (weather, searchTerm) {
   // console.log(weather);
   // console.log(searchTerm);
 
+  displayWeatherEl.innerHTML = "";
+  cards.innerHTML = "";
   // variables for display weather
   var cityName = weather.name;
   var temp = weather.main.temp;
@@ -125,14 +133,14 @@ var displayWeather = function (weather, searchTerm) {
   var weatherIcon = weather.weather[0].icon;
 
   // display weather container
-  var displayWeather = document.querySelector("#dashboard");
+  // var displayWeatherEl = document.querySelector("#dashboard");
 
   // create div to display heading and icon
   var displayDivContainerEl = document.createElement("div");
   displayDivContainerEl.setAttribute("class", "main-heading");
 
   // append displayDivContainerEl to displayWeather div
-  displayWeather.appendChild(displayDivContainerEl);
+  displayWeatherEl.appendChild(displayDivContainerEl);
 
   //create h1 for HEADING
   var cityNameEl = document.createElement("h1");
@@ -155,19 +163,19 @@ var displayWeather = function (weather, searchTerm) {
   tempEl = document.createElement("p");
   tempEl.textContent = `Temp: ${temp}°F`;
   //append temperature to displayWeather
-  displayWeather.appendChild(tempEl);
+  displayWeatherEl.appendChild(tempEl);
 
   //create p for WIND
   windEl = document.createElement("p");
   windEl.textContent = `Wind: ${wind} MPH`;
   //append wind to displayWeather
-  displayWeather.appendChild(windEl);
+  displayWeatherEl.appendChild(windEl);
 
   //create p for HUMIDITY
   humidityEl = document.createElement("p");
   humidityEl.textContent = `Humidity: ${humidity}%`;
   //append humidity to displayWeather
-  displayWeather.appendChild(humidityEl);
+  displayWeatherEl.appendChild(humidityEl);
 };
 
 var displayUV = function (weatherUv) {
@@ -180,14 +188,14 @@ var displayUV = function (weatherUv) {
 
   // append weather UV to displayWeather
   displayWeather.appendChild(weatherUvEl);
-  console.log(weatherUv);
+  // console.log(weatherUv);
 
   //create span for styling
   var spanEl = document.createElement("span");
   spanEl.textContent = ` ${weatherUv}`;
 
   var uvNumber = parseFloat(spanEl.innerText);
-  console.log(uvNumber);
+  // console.log(uvNumber);
 
   // if else statement to validade color uv
   if (uvNumber >= 0 && uvNumber <= 2.99) {
@@ -217,9 +225,8 @@ var displayUV = function (weatherUv) {
 
 var displayForecast = function (forecast) {
   //function to display forecast;
-
   var forecast = forecast.daily;
-  console.log(forecast);
+  // console.log(forecast);
 
   for (var i = 0; i < 5; i++) {
     var dailyTemp = forecast[i].temp.day;
@@ -230,9 +237,6 @@ var displayForecast = function (forecast) {
     if (ndate[i] === 0) {
       continue;
     }
-    // console.log(ndate);
-    //forecast container
-    var cards = document.querySelector("#forecast-container");
 
     //create div for cards
     var cardContainerEl = document.createElement("div");
