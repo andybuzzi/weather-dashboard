@@ -48,6 +48,7 @@ function renderCities() {
   }
 }
 
+// history search
 function historySearch(e) {
   try {
     console.log(e.target.value);
