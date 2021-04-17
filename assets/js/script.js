@@ -2,7 +2,6 @@ var userFormEl = document.querySelector("#user-form");
 var cityInputEl = document.querySelector("#city");
 var currentDate = moment().format("MM/DD/YYYY");
 var btn = document.querySelector("#submit");
-// console.log(currentDate);
 var cards = document.querySelector("#forecast-container");
 var displayWeatherEl = document.querySelector("#dashboard");
 
@@ -243,10 +242,8 @@ var displayForecast = function (forecast) {
     var dailyWind = forecast[i].wind_speed;
     var dailyHum = forecast[i].humidity;
     var weatherIcon = forecast[i].weather[0].icon;
-    var ndate = moment().add(i, "days").format("MM/DD/YYYY");
-    if (ndate[i] === 0) {
-      continue;
-    }
+    var ndate = moment().add(1, "days").format("MM/DD/YYYY");
+    ndate = moment().add(1, "days").add(i, "days").format("MM/DD/YYYY");
 
     //create div for cards
     var cardContainerEl = document.createElement("div");
