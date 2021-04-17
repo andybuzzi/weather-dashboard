@@ -85,7 +85,7 @@ var formSubmitHandler = function (event) {
 var getWeather = function (city) {
   // format the api url
   var apiUrl =
-    "http://api.openweathermap.org/data/2.5/weather?q=" +
+    "https://api.openweathermap.org/data/2.5/weather?q=" +
     city +
     "&units=imperial&appid=5e0f5983cb477cde1c391a7eaa38fce6";
 
