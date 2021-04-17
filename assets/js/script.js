@@ -40,10 +40,20 @@ function renderCities() {
     button.style.textTransform = "capitalize";
     button.setAttribute("class", "search-btn history");
     button.textContent = cityArr[i];
+    button.setAttribute("value", cityArr[i]);
+    button.addEventListener("click", historySearch);
 
-    var citySearch = button.value.trim();
     //Append the button the li before you append the li to the todoList
     searchHistory.appendChild(button);
+  }
+}
+
+function historySearch(e) {
+  try {
+    console.log(e.target.value);
+    getWeather(e.target.value);
+  } catch (error) {
+    console.log("error");
   }
 }
 
@@ -120,11 +130,10 @@ var getUv = function (uv) {
 };
 
 var displayWeather = function (weather, searchTerm) {
-  // console.log(weather);
-  // console.log(searchTerm);
-
+  // clear html to load display new search
   displayWeatherEl.innerHTML = "";
   cards.innerHTML = "";
+
   // variables for display weather
   var cityName = weather.name;
   var temp = weather.main.temp;
