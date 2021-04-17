@@ -35,8 +35,6 @@ main {
 }
 
 #search-city {
-  /* border: black 2px solid; */
-  /* flex-basis: 25%; */
   height: 100%;
   margin: 0 15px;
 }
@@ -50,9 +48,6 @@ main {
   font-size: 18px;
 }
 
-/* .search-city {
-  margin: 10px;
-} */
 .search-city label {
   font-weight: bold;
   padding: 5px;
